@@ -1,0 +1,22 @@
+{
+  "kode": "xendit",
+  "version": "1.0.0",
+  "frameworks": ["nextjs"],
+  "files": [
+    { "src": "lib/payments/xendit.ts", "dest": "lib/payments/xendit.ts" },
+    { "src": "app/api/payments/xendit/route.ts", "dest": "app/api/payments/xendit/route.ts" },
+    { "src": "app/api/payments/xendit/webhook/route.ts", "dest": "app/api/payments/xendit/webhook/route.ts" }
+  ],
+  "env": ["XENDIT_SECRET_KEY"],
+  "setup": "SETUP-FRAGMENT.md",
+  "removal": {
+    "files": [
+      "lib/payments/xendit.ts",
+      "app/api/payments/xendit/route.ts",
+      "app/api/payments/xendit/webhook/route.ts"
+    ],
+    "env": ["XENDIT_SECRET_KEY"],
+    "stepsFile": "REMOVE.md"
+  },
+  "conflicts": ["midtrans", "duitku"]
+}
