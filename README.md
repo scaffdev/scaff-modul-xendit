@@ -7,7 +7,7 @@ Disuntik via `scaff ... --with=xendit` (CLI 0.2.0+).
 | Framework | Status | Isi |
 |---|---|---|
 | Next.js | ✅ v1.0.0 | Invoice client + route buat invoice + route webhook terverifikasi |
-| Laravel | 🟡 STAGED (v1.1.0) | Service + Controller sudah ditulis, belum disuntik CLI |
+| Laravel | ✅ v1.0.0 | Service + Controller (HTTP client) |
 
 ## Struktur
 
@@ -19,7 +19,7 @@ scaff-modul-xendit/
 ├── nextjs/
 │   ├── lib/payments/xendit.ts
 │   └── app/api/payments/xendit/{route.ts,webhook/route.ts}
-└── laravel/                 ← STAGED untuk v1.1.0
+└── laravel/                 ← sumber untuk base Laravel
     ├── app/Services/XenditService.php
     └── app/Http/Controllers/XenditController.php
 ```

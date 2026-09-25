@@ -38,3 +38,38 @@ Buka `invoiceUrl` dari respons → bayar dengan metode tes yang tersedia.
 2. Daftarkan `https://domainmu/api/payments/xendit/webhook` sebagai
    **Invoice callback URL** di halaman Developers yang sama.
 3. Test: bayar invoice test → cek log server `{"ok":true,"paid":true}`.
+
+---
+
+## Setup Laravel (base Laravel)
+
+> CLI menyuntik Service + Controller; 3 langkah manual di bawah wajib
+> karena tidak bisa di-generate otomatis. Tanpa SDK tambahan
+> (pakai HTTP client Laravel).
+
+### L1. Isi `.env`
+
+```bash
+XENDIT_SECRET_KEY=xnd_development_xxxx   # rahasia! server saja
+```
+
+### L2. Tambah ke `config/services.php`
+
+```php
+'xendit' => [
+    'secret_key' => env('XENDIT_SECRET_KEY'),
+    // 'callback_token' => env('XENDIT_CALLBACK_TOKEN'), // isi setelah buat token
+],
+```
+
+### L3. Daftarkan route (mis. di `routes/api.php`)
+
+```php
+use App\Http\Controllers\XenditController;
+
+Route::post('/api/payments/xendit', [XenditController::class, 'create']);
+Route::post('/api/payments/xendit/webhook', [XenditController::class, 'webhook']);
+```
+
+Lalu `php artisan config:clear`. Webhook ikut aturan langkah 4 Next.js
+di atas (callback token + URL publik).

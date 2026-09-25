@@ -7,9 +7,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
- * Controller Xendit — STAGED untuk dukungan Laravel (aktif di v1.1.0).
+ * Controller Xendit — disuntik Scaffdev Builder ke template Laravel.
  *
- * NOTED — daftarkan route manual saat v1.1.0 rilis:
+ * NOTED — daftarkan route manual (mis. di routes/api.php):
  *   Route::post('/api/payments/xendit', [XenditController::class, 'create']);
  *   Route::post('/api/payments/xendit/webhook', [XenditController::class, 'webhook']);
  */

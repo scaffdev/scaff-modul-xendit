@@ -1,11 +1,13 @@
 {
   "kode": "xendit",
   "version": "1.0.0",
-  "frameworks": ["nextjs"],
+  "frameworks": ["nextjs", "laravel"],
   "files": [
-    { "src": "lib/payments/xendit.ts", "dest": "lib/payments/xendit.ts" },
-    { "src": "app/api/payments/xendit/route.ts", "dest": "app/api/payments/xendit/route.ts" },
-    { "src": "app/api/payments/xendit/webhook/route.ts", "dest": "app/api/payments/xendit/webhook/route.ts" }
+    { "src": "lib/payments/xendit.ts", "dest": "lib/payments/xendit.ts", "frameworks": ["nextjs"] },
+    { "src": "app/api/payments/xendit/route.ts", "dest": "app/api/payments/xendit/route.ts", "frameworks": ["nextjs"] },
+    { "src": "app/api/payments/xendit/webhook/route.ts", "dest": "app/api/payments/xendit/webhook/route.ts", "frameworks": ["nextjs"] },
+    { "src": "app/Services/XenditService.php", "dest": "app/Services/XenditService.php", "frameworks": ["laravel"] },
+    { "src": "app/Http/Controllers/XenditController.php", "dest": "app/Http/Controllers/XenditController.php", "frameworks": ["laravel"] }
   ],
   "env": ["XENDIT_SECRET_KEY"],
   "setup": "SETUP-FRAGMENT.md",
@@ -13,7 +15,9 @@
     "files": [
       "lib/payments/xendit.ts",
       "app/api/payments/xendit/route.ts",
-      "app/api/payments/xendit/webhook/route.ts"
+      "app/api/payments/xendit/webhook/route.ts",
+      "app/Services/XenditService.php",
+      "app/Http/Controllers/XenditController.php"
     ],
     "env": ["XENDIT_SECRET_KEY"],
     "stepsFile": "REMOVE.md"

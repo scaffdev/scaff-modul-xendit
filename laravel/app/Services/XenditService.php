@@ -5,10 +5,10 @@ namespace App\Services;
 use Illuminate\Support\Facades\Http;
 
 /**
- * Service Xendit Invoice — STAGED untuk dukungan Laravel (aktif di v1.1.0).
+ * Service Xendit Invoice — disuntik Scaffdev Builder ke template Laravel.
  *
  * NOTED:
- * - File ini BELUM disuntik CLI (manifest v1.0.0 frameworks: ["nextjs"]).
+ * - File ini 100% milik modul "xendit" (lihat scaff.integration.json).
  * - Sengaja memakai HTTP client Laravel (bukan xendit-php SDK) agar kontrak
  *   REST-nya 1:1 dengan implementasi Next.js dan kebal perubahan versi SDK:
  *   POST https://api.xendit.co/v2/invoices, Basic Auth "<secret>:".
