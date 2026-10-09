@@ -29,7 +29,7 @@ class XenditService
     }
 
     /** Buat invoice. Return: ['id', 'externalId', 'invoiceUrl', 'expiryDate', 'status']. */
-    public function createInvoice(string $externalId, int $amount, ?string $email = null, ?string $description = null): array
+    public function createInvoice(string $externalId, int $amount, ?string $email = null, ?string $description = null, ?int $durationSeconds = null): array
     {
         abort_if(trim($externalId) === '' || $amount <= 0, 422, 'externalId & amount tidak valid');
 
@@ -38,6 +38,7 @@ class XenditService
             'amount' => $amount,
             'payer_email' => $email,
             'description' => $description,
+            'invoice_duration' => $durationSeconds,
         ]);
 
         $res = $this->client()->post("{$this->base}/invoices", $payload);

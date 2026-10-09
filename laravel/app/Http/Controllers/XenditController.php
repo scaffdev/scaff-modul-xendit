@@ -25,13 +25,15 @@ class XenditController extends Controller
             'amount' => 'required|integer|min:1',
             'customerEmail' => 'nullable|email|max:255',
             'description' => 'nullable|string|max:255',
+            'durationSeconds' => 'nullable|integer|min:1',
         ]);
 
         return response()->json($this->xendit->createInvoice(
             $data['externalId'],
             $data['amount'],
             $data['customerEmail'] ?? null,
-            $data['description'] ?? null
+            $data['description'] ?? null,
+            $data['durationSeconds'] ?? null
         ));
     }
 

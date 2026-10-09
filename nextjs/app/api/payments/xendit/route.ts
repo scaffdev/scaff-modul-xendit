@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createInvoice } from "../../../../../lib/payments/xendit";
+import { createInvoice } from "../../../../lib/payments/xendit";
 
 /**
  * POST /api/payments/xendit — buat invoice.
@@ -7,7 +7,7 @@ import { createInvoice } from "../../../../../lib/payments/xendit";
  * NOTED: import path RELATIF agar jalan di template base mana pun.
  * Route 100% server-side → Secret Key aman.
  *
- * Body: { externalId: string, amount: number, customerEmail?: string, description?: string }
+ * Body: { externalId: string, amount: number, customerEmail?: string, description?: string, durationSeconds?: number }
  * Balikan: { id, externalId, invoiceUrl, expiryDate, status }
  */
 export async function POST(req: Request) {
@@ -18,11 +18,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Body harus JSON valid" }, { status: 400 });
   }
 
-  const { externalId, amount, customerEmail, description } = (body ?? {}) as {
+  const { externalId, amount, customerEmail, description, durationSeconds } = (body ?? {}) as {
     externalId?: unknown;
     amount?: unknown;
     customerEmail?: unknown;
     description?: unknown;
+    durationSeconds?: unknown;
   };
 
   if (typeof externalId !== "string" || !externalId.trim()) {
@@ -32,12 +33,17 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "amount wajib bilangan bulat Rupiah > 0" }, { status: 400 });
   }
 
+  if (durationSeconds !== undefined && (typeof durationSeconds !== "number" || !Number.isInteger(durationSeconds) || durationSeconds <= 0)) {
+    return NextResponse.json({ error: "durationSeconds wajib bilangan bulat detik > 0" }, { status: 400 });
+  }
+
   try {
     const result = await createInvoice({
       externalId: externalId.trim(),
       amount,
       customerEmail: typeof customerEmail === "string" ? customerEmail : undefined,
       description: typeof description === "string" ? description : undefined,
+      durationSeconds,
     });
     return NextResponse.json(result);
   } catch (err) {

@@ -3,7 +3,7 @@ import {
   verifyWebhookToken,
   isPaidStatus,
   type XenditWebhook,
-} from "../../../../../../lib/payments/xendit";
+} from "../../../../../lib/payments/xendit";
 
 /**
  * POST /api/payments/xendit/webhook — terima callback invoice dari Xendit.

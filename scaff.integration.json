@@ -1,6 +1,7 @@
 {
   "kode": "xendit",
   "version": "1.0.0",
+  "docsUrl": "https://docs.xendit.co/apidocs/quick-setup",
   "frameworks": ["nextjs", "laravel"],
   "files": [
     { "src": "lib/payments/xendit.ts", "dest": "lib/payments/xendit.ts", "frameworks": ["nextjs"] },
@@ -9,7 +10,7 @@
     { "src": "app/Services/XenditService.php", "dest": "app/Services/XenditService.php", "frameworks": ["laravel"] },
     { "src": "app/Http/Controllers/XenditController.php", "dest": "app/Http/Controllers/XenditController.php", "frameworks": ["laravel"] }
   ],
-  "env": ["XENDIT_SECRET_KEY"],
+    "env": ["XENDIT_SECRET_KEY", "XENDIT_CALLBACK_TOKEN"],
   "setup": "SETUP-FRAGMENT.md",
   "removal": {
     "files": [
@@ -19,7 +20,7 @@
       "app/Services/XenditService.php",
       "app/Http/Controllers/XenditController.php"
     ],
-    "env": ["XENDIT_SECRET_KEY"],
+  "env": ["XENDIT_SECRET_KEY", "XENDIT_CALLBACK_TOKEN"],
     "stepsFile": "REMOVE.md"
   },
   "conflicts": ["midtrans", "duitku"]
